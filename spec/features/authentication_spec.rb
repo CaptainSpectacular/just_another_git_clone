@@ -1,16 +1,8 @@
 require 'rails_helper'
+require 'support/omniauth.rb'
 
 describe 'authentication' do
   it 'can use github' do
-    OmniAuth.config.test_mode = true
-    omniauth_hash = { 'provider' => 'github',
-                      'uid' => '11223',
-                      'info' => {
-                          'name' => 'Burbot',
-                          'email' => 'burbot@swampsong.com',
-                          'nickname' => 'BurbotsRevenge' }}
- 
-    OmniAuth.config.add_mock(:github, omniauth_hash)
     visit root_path 
     click_link 'Sign in with GitHub'
 
