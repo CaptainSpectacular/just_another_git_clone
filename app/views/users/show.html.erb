@@ -1,1 +1,4 @@
-<%= user.username %>
+<p><%= user.username %></p>
+<% user.repositories.each do |repo| %>
+  <p><%= repo.name %></p>
+<% end %>
