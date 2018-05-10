@@ -7,7 +7,9 @@ class Repository
   end
 
   def self.from_params(params)
-    new(name: params[:repo], owner: { login: params[:user_slug] } )
+    repo = { name: params[:repo],
+             owner: { login: params[:user_slug] } }
+    new(repo)
   end
 
   def commits
