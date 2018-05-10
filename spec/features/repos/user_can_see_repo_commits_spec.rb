@@ -12,9 +12,12 @@ describe 'a logged in user' do
         repo = @user.repositories.last
         visit "/users/#{@user.username}/repos/#{repo.name}"
 
+        expect(page).to have_content(repo.name)
+        expect(page).to have_content(owner)
         expect(page).to have_css('.commit', count: 30)
 
         repo.commits.each do |commit|
+          expect(commit).to be_a(Commit)
           expect(page).to have_content(commit.author)
           expect(page).to have_content(commit.author_url)
           expect(page).to have_content(commit.date)

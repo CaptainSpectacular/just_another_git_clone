@@ -1,15 +1,23 @@
 class RepositoryFinder
 
-  def initialize(username, repo)
-    @repo = repo
-    @username = username
+  def initialize(owner, repo)
+    @repo  = repo
+    @owner = owner 
   end
-
+  
   def commits 
-    conn = Faraday.new('https://api.github.com')
-    raw_r = conn.get("/repos/#{@username}/#{@repo}/commits").body
-    JSON.parse(raw_r, symbolize_names: true).map do |attrs|
+    JSON.parse(raw_response, symbolize_names: true).map do |attrs|
       Commit.new(attrs)
     end
+  end
+
+  private
+
+  def conn
+    Faraday.new('https://api.github.com')
+  end
+
+  def raw_response
+    conn.get("/repos/#{@owner}/#{@repo}/commits").body
   end
 end

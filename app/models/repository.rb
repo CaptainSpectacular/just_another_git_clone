@@ -1,16 +1,17 @@
 class Repository
   attr_reader :name, :url
   def initialize(repo)
-    @name = repo[:name]
-    @url  = repo[:url]
+    @name  = repo[:name]
+    @url   = repo[:url]
     @owner = repo[:owner][:login]
   end
-  
+
+  def self.from_params(params)
+    new(name: params[:repo], owner: { login: params[:user_slug] } )
+  end
+
   def commits
-    conn = Faraday.new('https://api.github.com')
-    raw_r = conn.get("/repos/#{@owner}/#{@name}/commits").body
-    JSON.parse(raw_r, symbolize_names: true).map do |attrs|
-      Commit.new(attrs)
-    end
+    finder = RepositoryFinder.new(@owner, @name)
+    finder.commits
   end
 end
