@@ -9,5 +9,5 @@ Rails.application.routes.draw do
     get '/repos/:repo', to: 'repositories#show'
   end
 
-  get '/profile', to: 'users#show'
+  get '/profile', to: 'profile#show'
 end
