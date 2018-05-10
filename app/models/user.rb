@@ -1,6 +1,10 @@
 class User < ApplicationRecord
   validates_presence_of :username
  
+  def to_param
+    username
+  end
+
   def self.from_omniauth(auth)
     where(uid: auth[:uid]).first_or_create do |user|
       user.uid      = auth.uid
