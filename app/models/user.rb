@@ -19,6 +19,11 @@ class User < ApplicationRecord
     end
   end
 
+  def followers
+    finder = FollowerFinder.new(self)
+    finder.followers
+  end
+
   private
 
   def conn
