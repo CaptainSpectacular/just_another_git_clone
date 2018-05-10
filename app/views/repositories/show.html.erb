@@ -1,0 +1,7 @@
+<% repository.commits.each do |commit| %>
+  <div class='commit'>
+    <%= commit.author %>
+    <%= commit.author_url %>
+    <%= commit.date %>
+  </div>
+<% end %>
