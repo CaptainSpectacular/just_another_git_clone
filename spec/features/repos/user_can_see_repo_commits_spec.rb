@@ -13,7 +13,7 @@ describe 'a logged in user' do
         visit "/users/#{@user.username}/repos/#{repo.name}"
 
         expect(page).to have_content(repo.name)
-        expect(page).to have_content(owner)
+        expect(page).to have_content(repo.owner)
         expect(page).to have_css('.commit', count: 30)
 
         repo.commits.each do |commit|

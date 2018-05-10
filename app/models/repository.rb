@@ -1,5 +1,5 @@
 class Repository
-  attr_reader :name, :url
+  attr_reader :name, :url,:owner
   def initialize(repo)
     @name  = repo[:name]
     @url   = repo[:url]
