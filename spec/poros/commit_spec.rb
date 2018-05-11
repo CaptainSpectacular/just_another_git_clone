@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe Commit do
-  let(:attrs) { {commit: { author: { login: 'pollockcl', date: '12/12/12' },
+  let(:attrs) { {commit: { author: { date: '12/12/12' },
                                      },
-                 author: { url: '123ezpz' }}
+                 author: { url: '123ezpz', login: 'pollockcl'}}
               }
 
   subject{ Commit.new(attrs) }
