@@ -14,7 +14,6 @@ describe 'a user' do
         @user.repositories.each do |repo|
           expect(page).to have_content(repo.name) 
         end
-      end
-    end
+      end end
   end
 end
