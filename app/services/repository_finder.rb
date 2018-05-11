@@ -1,23 +1,13 @@
-class RepositoryFinder
-
-  def initialize(owner, repo)
-    @repo  = repo
-    @owner = owner 
-  end
+class RepositoryFinder < MasterService
   
-  def commits 
-    JSON.parse(raw_response, symbolize_names: true).map do |attrs|
-      Commit.new(attrs)
+  def initialize(user)
+    @user = user
+    @url = "/users/#{user.username}/repos"
+  end
+
+  def repositories
+    JSON.parse(raw_response(@url, true), symbolize_names: true).map do |attrs|
+      Repository.new(attrs)
     end
-  end
-
-  private
-
-  def conn
-    Faraday.new('https://api.github.com')
-  end
-
-  def raw_response
-    conn.get("/repos/#{@owner}/#{@repo}/commits").body
   end
 end

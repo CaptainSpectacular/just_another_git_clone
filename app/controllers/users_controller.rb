@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
   def show
-    render locals: { user: current_user }
+    render locals: { user: GitHubUser.new(params[:slug]) }
   end
 end

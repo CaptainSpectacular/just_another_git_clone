@@ -2,3 +2,7 @@
 <% user.repositories.each do |repo| %>
   <p><%= repo.name %></p>
 <% end %>
+
+<% user.followers.each do |follower| %>
+  <p><%= follower.username %></p>
+<% end %>
