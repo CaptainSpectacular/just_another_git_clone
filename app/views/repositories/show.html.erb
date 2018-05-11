@@ -1,10 +1,12 @@
-<%= repository.name %>
-<%= repository.owner %>
+<div>
+  <%= repository.name %>
+  <%= repository.owner %>
+</div>
 
 <% repository.commits.each do |commit| %>
   <div class='commit'>
-    <%= commit.author %>
-    <%= commit.author_url %>
-    <%= commit.date %>
+    <p><%= commit.author %></p>
+    <p><%= commit.author_url %></p>
+    <p><%= commit.date %></p>
   </div>
 <% end %>
