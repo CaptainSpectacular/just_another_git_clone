@@ -13,7 +13,7 @@ class Repository
   end
 
   def commits
-    finder = RepositoryFinder.new(@owner, @name)
+    finder = CommitsFinder.new(@owner, @name)
     finder.commits
   end
 end

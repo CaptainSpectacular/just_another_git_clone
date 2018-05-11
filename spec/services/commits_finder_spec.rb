@@ -1,11 +1,11 @@
 require 'rails_helper'
 
-describe RepositoryFinder do
-  subject{RepositoryFinder.new('pollockcl', 'rails_engine')}
+describe CommitsFinder do
+  subject{CommitsFinder.new('pollockcl', 'rails_engine')}
 
   describe 'creation' do
     it 'can be made' do
-      expect(subject).to be_a(RepositoryFinder)
+      expect(subject).to be_a(CommitsFinder)
     end
   end
 

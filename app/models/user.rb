@@ -14,30 +14,12 @@ class User < ApplicationRecord
   end
 
   def repositories 
-    processed_response.map do |repo|
-      Repository.new(repo)
-    end
+    finder = RepositoryFinder.new(self)
+    finder.repositories
   end
 
   def followers
     finder = FollowerFinder.new(self)
     finder.followers
-  end
-
-  private
-
-  def conn
-    Faraday.new('https://api.github.com')
-  end
-
-  def response
-    conn.get do |req|
-      req.url "/users/#{username}/repos"
-      req.headers['Authorization'] = 'token ' + token
-    end
-  end
-
-  def processed_response
-    JSON.parse(response.body, symbolize_names: true)
   end
 end

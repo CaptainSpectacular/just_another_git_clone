@@ -1,14 +1,13 @@
 class RepositoryFinder < MasterService
-
-  def initialize(owner, repo)
-    @repo  = repo
-    @owner = owner 
-    @url   = "/repos/#{owner}/#{repo}/commits"
-  end
   
-  def commits 
-    JSON.parse(raw_response(@url), symbolize_names: true).map do |attrs|
-      Commit.new(attrs)
+  def initialize(user)
+    @user = user
+    @url = "/users/#{user.username}/repos"
+  end
+
+  def repositories
+    JSON.parse(raw_response(@url, true), symbolize_names: true).map do |attrs|
+      Repository.new(attrs)
     end
   end
 end
